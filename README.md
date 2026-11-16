@@ -1,3 +1,6 @@
+
+# Shine Mongol 3 – Student Hub
+
 A student community and educational entertainment website.
 
 ## Requirements

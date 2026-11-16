@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e9533a">
+  <title>Shine Mongol 3 | Student Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <img src="logo.png" alt="Shine Mongol logo">
+      <span>SHINE MONGOL 3<small>STUDENT HUB</small></span>
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="navigation">
+      <button onclick="showPage('home')">Нүүр</button>
+      <button onclick="showPage('news')">Мэдээ</button>
+      <button onclick="showPage('community')">Community</button>
+      <button onclick="showPage('games')">Game Zone</button>
+      <button onclick="showPage('study')">Study</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">WELCOME TO STUDENT HUB</span>
+          <h1>Сайн уу, сурагч аа! 👋</h1>
+          <p>Мэдээллээ хуваалц. Шинэ зүйл сур. Хөгжилтэй бай.</p>
+          <button class="primary" onclick="showPage('games')">
+            Тоглоом тоглох →
+          </button>
+        </div>
+        <div class="hero-mark">SM3</div>
+      </div>
+
+      <h2>Юу хийхийг хүсэж байна?</h2>
+      <div class="quick-grid">
+        <article class="quick-card" onclick="showPage('news')">
+          <span>📢</span><h3>Сургуулийн мэдээ</h3>
+          <p>Шинэ мэдээллүүд</p>
+        </article>
+        <article class="quick-card" onclick="showPage('community')">
+          <span>💬</span><h3>Community</h3>
+          <p>Сурагчидтайгаа ярилц</p>
+        </article>
+        <article class="quick-card" onclick="showPage('games')">
+          <span>🎮</span><h3>Game Zone</h3>
+          <p>Тоглож, амар</p>
+        </article>
+        <article class="quick-card" onclick="showPage('study')">
+          <span>📚</span><h3>Study Zone</h3>
+          <p>Хичээлийн материал</p>
+        </article>
+      </div>
+      <h2>Сүүлийн мэдээлэл</h2>
+      <div id="homeNews" class="news-list"></div>
+    </section>
+
+    <section id="news" class="page">
+      <h1>📢 Сургуулийн мэдээлэл</h1>
+      <p class="muted">Мэдээ, зарлал, үйл ажиллагаа.</p>
+      <div id="newsList" class="news-list"></div>
+      <div class="panel">
+        <h3>Шинэ мэдээлэл нэмэх</h3>
+        <input id="newsTitle" placeholder="Гарчиг">
+        <textarea id="newsContent" placeholder="Мэдээллийн агуулга"></textarea>
+        <button class="primary" onclick="addNews()">Нийтлэх</button>
+        <small>Энэ demo хувилбарт мэдээлэл зөвхөн тухайн төхөөрөмжийн browser-д хадгалагдана.</small>
+      </div>
+    </section>
+
+    <section id="community" class="page">
+      <h1>💬 Student Community</h1>
+      <p class="muted">Сурагчдын нээлттэй хэлэлцүүлэг.</p>
+      <div class="panel">
+        <input id="postName" placeholder="Нэр эсвэл nickname">
+        <textarea id="postText" placeholder="Юу хуваалцахыг хүсэж байна?"></textarea>
+        <button class="primary" onclick="addPost()">Post хийх</button>
+      </div>
+      <div id="posts" class="news-list"></div>
+    </section>
+
+    <section id="games" class="page">
+      <h1>🎮 Game Zone</h1>
+      <p class="muted">Оноо, рейтинггүй. Зүгээр л хөгжилдөөрэй!</p>
+
+      <div class="filters">
+        <button class="filter active" onclick="filterGames('all',this)">Бүгд</button>
+        <button class="filter" onclick="filterGames('1-3',this)">1–3 анги</button>
+        <button class="filter" onclick="filterGames('4-6',this)">4–6 анги</button>
+        <button class="filter" onclick="filterGames('7-9',this)">7–9 анги</button>
+        <button class="filter" onclick="filterGames('10-12',this)">10–12 анги</button>
+      </div>
+
+      <div id="gameGrid" class="game-grid"></div>
+
+      <div class="panel">
+        <h2>🌐 Гадаад тоглоомын булан</h2>
+        <div class="external-grid">
+          <a href="https://scratch.mit.edu/" target="_blank" rel="noopener">Scratch – Creative games ↗</a>
+          <a href="https://www.geoguessr.com/" target="_blank" rel="noopener">GeoGuessr – Geography ↗</a>
+          <a href="https://www.chess.com/" target="_blank" rel="noopener">Chess.com – Chess ↗</a>
+          <a href="https://www.coolmathgames.com/" target="_blank" rel="noopener">Coolmath Games ↗</a>
+        </div>
+        <small>Гадаад сайтуудын насны тохиромж, нууцлалын нөхцөлийг шалгаж ашиглана.</small>
+      </div>
+
+      <div id="gameArea" class="panel game-area">
+        <p>Тоглоом сонгоод энд тоглоорой!</p>
+      </div>
+    </section>
+
+    <section id="study" class="page">
+      <h1>📚 Study Zone</h1>
+      <p class="muted">Сурах, хуваалцах, хамтдаа хөгжих.</p>
+      <div class="quick-grid">
+        <a class="quick-card" href="https://www.khanacademy.org/" target="_blank" rel="noopener">
+          <span>➗</span><h3>Khan Academy</h3><p>Математик, шинжлэх ухаан</p>
+        </a>
+        <a class="quick-card" href="https://www.britannica.com/kids" target="_blank" rel="noopener">
+          <span>🌍</span><h3>Britannica Kids</h3><p>Мэдлэг, танин мэдэхүй</p>
+        </a>
+        <a class="quick-card" href="https://www.duolingo.com/" target="_blank" rel="noopener">
+          <span>🗣️</span><h3>Duolingo</h3><p>Хэл сурах</p>
+        </a>
+        <a class="quick-card" href="https://www.nasa.gov/stem/" target="_blank" rel="noopener">
+          <span>🚀</span><h3>NASA STEM</h3><p>Шинжлэх ухаан</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="logo.png" alt="" class="footer-logo">
+    <p>SHINE MONGOL 3 STUDENT HUB</p>
+    <small>Learn • Connect • Play</small>
+    <p class="muted">Student project concept – Not an official school website.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
